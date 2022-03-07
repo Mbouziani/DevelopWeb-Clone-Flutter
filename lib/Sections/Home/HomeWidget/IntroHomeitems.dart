@@ -2,9 +2,11 @@ import 'package:companyweb/Sections/Home/HomeWidget/RowButton.dart';
 import 'package:flutter/material.dart';
 
 class introHomeitems extends StatelessWidget {
-  const introHomeitems({
-    Key? key,
-  }) : super(key: key);
+  final VoidCallback aboutFunction, portfolioFunction;
+
+  const introHomeitems(
+      {Key? key, required this.aboutFunction, required this.portfolioFunction})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -42,7 +44,9 @@ class introHomeitems extends StatelessWidget {
           const SizedBox(
             height: 35,
           ),
-          const RowButtonHome(),
+          RowButtonHome(
+              aboutFunction: aboutFunction,
+              portfolioFunction: portfolioFunction),
         ],
       ),
     );

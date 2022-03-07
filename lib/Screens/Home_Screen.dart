@@ -2,7 +2,9 @@
 
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:companyweb/DATA.dart';
+import 'package:companyweb/Screens/ContactUs_Screen.dart';
 import 'package:companyweb/Sections/Home/Home_Section.dart';
+import 'package:companyweb/Sections/Navigator/headerItems.dart';
 import 'package:companyweb/Sections/Service/Service_Section.dart';
 import 'package:companyweb/Widgets/Colors.dart';
 import 'package:companyweb/Widgets/Costumebutton.dart';
@@ -23,6 +25,14 @@ class _HomeScreenState extends State<HomeScreen> {
   final PortfolioKey = GlobalKey();
   final AboutKey = GlobalKey();
   final Opinionkey = GlobalKey();
+
+  Future ScrolltoItem(GlobalKey itemKey) async {
+    await Scrollable.ensureVisible(itemKey.currentContext!,
+        curve: Curves.easeInOutCirc,
+        duration: const Duration(
+          milliseconds: 1000,
+        ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -53,32 +63,37 @@ class _HomeScreenState extends State<HomeScreen> {
                           onTap: () {
                             switch (index) {
                               case 0:
-                                Scrollable.ensureVisible(
-                                    HomeKey.currentContext!);
+                                ScrolltoItem(HomeKey);
+
                                 break;
                               case 1:
-                                Scrollable.ensureVisible(
-                                    ServiceKey.currentContext!);
+                                ScrolltoItem(ServiceKey);
                                 break;
                               case 2:
-                                Scrollable.ensureVisible(
-                                    Opinionkey.currentContext!);
+                                ScrolltoItem(Opinionkey);
                                 break;
                               case 3:
-                                Scrollable.ensureVisible(
-                                    PortfolioKey.currentContext!);
+                                ScrolltoItem(PortfolioKey);
                                 break;
                               case 4:
-                                Scrollable.ensureVisible(
-                                    AboutKey.currentContext!);
+                                ScrolltoItem(AboutKey);
+                                break;
+                              case 5:
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ContactUsScreen()),
+                                );
                                 break;
 
                               default:
-                                Scrollable.ensureVisible(
-                                    HomeKey.currentContext!);
+                                ScrolltoItem(HomeKey);
                             }
                           },
-                          child: headritem(index: index))),
+                          child: headritem(
+                            index: index,
+                            txtcolor: bleuClr,
+                          ))),
                 )
               ]),
         ),
@@ -86,36 +101,16 @@ class _HomeScreenState extends State<HomeScreen> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            HomeSection(Homekey: HomeKey),
+            HomeSection(
+              Homekey: HomeKey,
+              aboutFunction: () => ScrolltoItem(AboutKey),
+              portfolioFunction: () => ScrolltoItem(PortfolioKey),
+            ),
             ServisecSection(ServiseKey: ServiceKey),
             OpinionSection(Opinionkey: Opinionkey),
             ClientWorkedWith(PortfolioKey: PortfolioKey),
             BottomSection(Aboutkey: AboutKey),
           ],
-        ),
-      ),
-    );
-  }
-}
-
-class headritem extends StatelessWidget {
-  final int index;
-
-  const headritem({Key? key, required this.index}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18.0),
-      child: Text(
-        naveitems[index],
-        textAlign: TextAlign.center,
-        style: const TextStyle(
-          height: 1.6,
-          fontFamily: 'Comfortaa',
-          fontSize: 14,
-          fontWeight: FontWeight.w600,
-          color: bleuClr,
         ),
       ),
     );
@@ -129,9 +124,8 @@ class BottomSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       key: Aboutkey,
-      color: black,
       width: MediaQuery.of(context).size.width,
       height: 900,
       child: Column(
@@ -158,7 +152,7 @@ class BottomSection extends StatelessWidget {
               const SizedBox(
                 width: 990,
                 child: Text(
-                  "Clients who worked with us",
+                  "Would you like develooper to build your website?",
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     height: 1.5,
@@ -176,12 +170,18 @@ class BottomSection extends StatelessWidget {
                 builder: (isHovered) {
                   return Costumebutton(
                     isHovered: isHovered,
-                    textbutton: 'CHECK OUT ALL OUR WORKS',
+                    textbutton: 'CONTACT US',
                     backClr: transClr,
                     txtClr: white,
                     hoverClr: white.withOpacity(0.3),
                     borderClr: white,
-                    onClick: () {},
+                    onClick: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => ContactUsScreen()),
+                      );
+                    },
                     borderhvrClr: white,
                   );
                 },

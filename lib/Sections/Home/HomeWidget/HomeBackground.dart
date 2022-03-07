@@ -2,9 +2,11 @@ import 'package:companyweb/Sections/Home/HomeWidget/IntroHomeitems.dart';
 import 'package:flutter/material.dart';
 
 class HomeBackWithitems extends StatelessWidget {
-  const HomeBackWithitems({
-    Key? key,
-  }) : super(key: key);
+  final VoidCallback aboutFunction, portfolioFunction;
+
+  const HomeBackWithitems(
+      {Key? key, required this.aboutFunction, required this.portfolioFunction})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +64,9 @@ class HomeBackWithitems extends StatelessWidget {
                 image: AssetImage("assets/images/develooper_Herobk.jpg"),
                 fit: BoxFit.cover),
           ),
-          child: const introHomeitems(),
+          child: introHomeitems(
+              aboutFunction: aboutFunction,
+              portfolioFunction: portfolioFunction),
         ),
       ],
     );

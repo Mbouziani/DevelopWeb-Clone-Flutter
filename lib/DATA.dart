@@ -55,3 +55,10 @@ List<String> naveitems = [
   'About us',
   'Contact',
 ];
+
+List<String> contactInputItems = [
+  'Name *',
+  'Email *',
+  'Your Phone',
+  'Your Message',
+];

@@ -4,10 +4,11 @@ import 'package:companyweb/Widgets/OnHover.dart';
 import 'package:flutter/material.dart';
 
 class RowButtonHome extends StatelessWidget {
-  const RowButtonHome({
-    Key? key,
-  }) : super(key: key);
+  final VoidCallback aboutFunction, portfolioFunction;
 
+  const RowButtonHome(
+      {Key? key, required this.aboutFunction, required this.portfolioFunction})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -24,7 +25,7 @@ class RowButtonHome extends StatelessWidget {
                 borderClr: orngClr,
                 hoverClr: bleuClr,
                 borderhvrClr: bleuClr,
-                onClick: () {},
+                onClick: portfolioFunction,
                 textbutton: "OUR PORTFOLIO",
                 isHovered: isHovered,
               );
@@ -41,7 +42,7 @@ class RowButtonHome extends StatelessWidget {
                 borderClr: white,
                 hoverClr: white.withOpacity(0.2),
                 borderhvrClr: white,
-                onClick: () {},
+                onClick: aboutFunction,
                 textbutton: "ABOUT US",
                 isHovered: isHovered,
               );

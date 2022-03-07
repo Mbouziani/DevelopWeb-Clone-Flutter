@@ -1,3 +1,4 @@
+import 'package:companyweb/Screens/ContactUs_Screen.dart';
 import 'package:companyweb/Widgets/Colors.dart';
 import 'package:companyweb/Widgets/Costumebutton.dart';
 import 'package:companyweb/Widgets/OnHover.dart';
@@ -41,7 +42,12 @@ class HomeBottemContact extends StatelessWidget {
                 txtClr: black,
                 hoverClr: black.withOpacity(0.05),
                 borderClr: black,
-                onClick: () {},
+                onClick: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ContactUsScreen()),
+                  );
+                },
                 borderhvrClr: black,
               );
             },
